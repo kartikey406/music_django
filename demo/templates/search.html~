@@ -1,0 +1,51 @@
+{%extends 'base.html'%}
+{%load local_tag%}
+
+{%block catta%}
+
+<a href="/logout" class="btn btn-success">Logout</a>
+<a href="/history" class="btn btn-success">History</a>
+
+         
+{%endblock%}
+{%block address%}
+<h1>Hello, {{full_name}}</h1>
+<p>This is a Web application for a searching your tracks of your favourite artist. It also give  a recommendation of similar arist please enter your artist name in the search box</p>
+{%endblock%}
+{%block demo%}
+
+<form class="navbar-form navbar-right" action='/game/' method='post'>{%csrf_token%}
+ <input type="text" name="username" value="" id="username"/>
+ <button type="submit" class="btn btn-success">Search</button>
+</form>
+{%endblock%}
+{%block last%}
+{%if k.track%}
+<h1 align="center">TopTracks</h1> 
+{%for b in k.track%}
+<div class="col-md-4">
+	<h2><a href={{b.url}}>{{b.name}}</a></h2>
+	
+	
+	
+        </div>
+{%endfor%}
+{%endif%}
+{%if s.artist%}
+<h1 align="center">Recommendations</h1> 
+{%for a in s.artist%}
+
+	
+        <div class="col-md-4">
+	<h2><a href='/get/{{a.name}}'>{{a.name}}</a></h2>
+	{%if a.image.2|get_key%}
+	<img src= {{a.image.2|get_key}} />
+	{%endif%}
+	
+        </div>
+ 	
+{%endfor%}
+{%endif%}
+{%endblock%}
+
+ 

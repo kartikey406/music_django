@@ -1,0 +1,5 @@
+<html>
+{%for s in forms%}
+{{s.name}}
+{%endfor%}
+</html>
